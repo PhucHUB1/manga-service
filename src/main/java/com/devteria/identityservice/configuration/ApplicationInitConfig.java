@@ -53,6 +53,16 @@ public class ApplicationInitConfig {
                         .description("Admin role")
                         .build());
 
+                Role authorRole = roleRepository.save(Role.builder()
+                        .name(PredefinedRole.AUTHOR_ROLE)
+                        .description("Author role")
+                        .build());
+
+                Role vip_userRole = roleRepository.save(Role.builder()
+                        .name(PredefinedRole.VIP_USER_ROLE)
+                        .description("Vip User role")
+                        .build());
+
                 var roles = new HashSet<Role>();
                 roles.add(adminRole);
 
@@ -63,6 +73,9 @@ public class ApplicationInitConfig {
                         .build();
 
                 userRepository.save(user);
+
+                roles.add(authorRole);
+                roles.add(vip_userRole);
                 log.warn("admin user has been created with default password: admin, please change it");
             }
             log.info("Application initialization completed .....");

@@ -1,23 +1,19 @@
 package com.devteria.identityservice.validator;
-
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
-@Target({FIELD})
-@Retention(RUNTIME)
-@Constraint(validatedBy = {DobValidator.class})
+@Documented
+@Constraint(validatedBy = DobValidator.class)
+@Target( { ElementType.METHOD, ElementType.FIELD })
+@Retention(RetentionPolicy.RUNTIME)
 public @interface DobConstraint {
     String message() default "Invalid date of birth";
-
-    int min();
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
+
+    int min();
 }

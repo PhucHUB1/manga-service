@@ -29,6 +29,10 @@ public class User {
     String lastName;
     String email;
 
+    @Column(name = "is_vip", nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
+    boolean isVip = false;
+
+
     @ManyToMany
     Set<Role> roles;
 }
