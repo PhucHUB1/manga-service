@@ -28,6 +28,7 @@ public class User {
     LocalDate dob;
     String lastName;
     String email;
+    String status;
 
     @Column(name = "is_vip", nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
     boolean isVip = false;
