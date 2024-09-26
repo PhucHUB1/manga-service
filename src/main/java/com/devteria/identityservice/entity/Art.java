@@ -14,7 +14,12 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class Content {
+public class Art {
     @Id
-    String content_name;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    String id;
+
+    String file_name;
+    String description;
+
 }

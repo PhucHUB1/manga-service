@@ -7,8 +7,6 @@ import jakarta.persistence.Id;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @Builder
@@ -16,18 +14,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class Manga {
+public class Author {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
-
-    String title;
-    String altTitle;
-    String description;
-    int year;
-
-
-    LocalDate createDate;
-    LocalDate updateDate;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 }

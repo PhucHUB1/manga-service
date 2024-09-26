@@ -12,7 +12,8 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class Theme {
+public class ContentWarning {
     @Id
-    String theme_name;
+    String content_name;
+
 }
