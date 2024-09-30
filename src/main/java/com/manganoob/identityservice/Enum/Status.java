@@ -12,5 +12,6 @@ public enum Status {
     ACCEPTED,
     REFUSED,
     AUTO_RESOLVED,
-
+    BANNED,
+    POSTED
 }

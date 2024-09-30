@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.manganoob.identityservice.dto.request.AuthenticationRequest;
-import com.manganoob.identityservice.dto.request.IntrospectRequest;
-import com.manganoob.identityservice.dto.request.LogoutRequest;
-import com.manganoob.identityservice.dto.request.RefreshRequest;
+import com.manganoob.identityservice.dto.request.token_req.IntrospectRequest;
+import com.manganoob.identityservice.dto.request.user_req.LogoutRequest;
+import com.manganoob.identityservice.dto.request.user_req.RefreshRequest;
 import com.manganoob.identityservice.dto.response.AuthenticationResponse;
-import com.manganoob.identityservice.dto.response.IntrospectResponse;
+import com.manganoob.identityservice.dto.response.token_res.IntrospectResponse;
 import com.manganoob.identityservice.entity.InvalidatedToken;
 import com.manganoob.identityservice.entity.User;
 import com.manganoob.identityservice.exception.AppException;

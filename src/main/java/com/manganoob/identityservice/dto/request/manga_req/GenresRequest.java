@@ -1,4 +1,4 @@
-package com.manganoob.identityservice.dto.response;
+package com.manganoob.identityservice.dto.request.manga_req;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,6 +8,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class IntrospectResponse {
-    boolean valid;
+public class GenresRequest {
+    String genres_name;
 }

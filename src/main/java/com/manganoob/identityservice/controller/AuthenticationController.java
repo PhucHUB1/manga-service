@@ -2,6 +2,9 @@ package com.manganoob.identityservice.controller;
 
 import java.text.ParseException;
 
+import com.manganoob.identityservice.dto.request.token_req.IntrospectRequest;
+import com.manganoob.identityservice.dto.request.user_req.LogoutRequest;
+import com.manganoob.identityservice.dto.request.user_req.RefreshRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.manganoob.identityservice.dto.request.*;
 import com.manganoob.identityservice.dto.response.AuthenticationResponse;
-import com.manganoob.identityservice.dto.response.IntrospectResponse;
+import com.manganoob.identityservice.dto.response.token_res.IntrospectResponse;
 import com.manganoob.identityservice.service.AuthenticationService;
 import com.nimbusds.jose.JOSEException;
 

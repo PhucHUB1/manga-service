@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -18,24 +19,26 @@ import java.util.List;
 public class Chapters {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+    UUID id;
 
     String volume;
-    String chapter_number;
     String page_number;
-
     String title;
     LocalDate release_date;
     LocalDateTime createAt;
 
-    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "chapter_images", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Images> chapterImages;
 
-    @OneToMany(mappedBy = "chapter_comment", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "chapter_comment", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Comment> chapterComments;
 
     @ManyToOne
-    Manga manga_chapter;
+    @JoinColumn(name = "manga_id", nullable = false)
+    Manga manga_chapters;
 
-
+    @PrePersist
+    protected void onCreate() {
+        this.createAt = LocalDateTime.now();
+    }
 }

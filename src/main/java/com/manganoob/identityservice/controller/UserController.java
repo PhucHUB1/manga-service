@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.manganoob.identityservice.dto.request.ApiResponse;
-import com.manganoob.identityservice.dto.request.UserCreationRequest;
-import com.manganoob.identityservice.dto.request.UserUpdateRequest;
-import com.manganoob.identityservice.dto.response.UserResponse;
+import com.manganoob.identityservice.dto.request.user_req.UserCreationRequest;
+import com.manganoob.identityservice.dto.request.user_req.UserUpdateRequest;
+import com.manganoob.identityservice.dto.response.user_res.UserResponse;
 import com.manganoob.identityservice.service.UserService;
 
 import lombok.AccessLevel;

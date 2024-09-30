@@ -1,8 +1,9 @@
-package com.manganoob.identityservice.dto.response;
+package com.manganoob.identityservice.dto.response.user_res;
 
 import java.time.LocalDate;
 import java.util.Set;
 
+import com.manganoob.identityservice.dto.response.RoleResponse;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

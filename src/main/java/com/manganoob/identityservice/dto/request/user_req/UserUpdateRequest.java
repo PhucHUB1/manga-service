@@ -1,4 +1,4 @@
-package com.manganoob.identityservice.dto.request;
+package com.manganoob.identityservice.dto.request.user_req;
 
 import java.time.LocalDate;
 import java.util.List;

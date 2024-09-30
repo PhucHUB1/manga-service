@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @Builder
@@ -14,8 +16,8 @@ import lombok.experimental.FieldDefaults;
 @Entity
 public class Images {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-     Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    UUID id;
 
     @Lob
     @Column(nullable = false)
@@ -26,5 +28,5 @@ public class Images {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chapter_id", nullable = false)
-     Chapters chapter;
+     Chapters chapter_images;
 }

@@ -1,4 +1,4 @@
-package com.manganoob.identityservice.dto.request;
+package com.manganoob.identityservice.dto.request.user_req;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,6 +8,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class FormatRequest {
-    String format_name;
+public class LogoutRequest {
+    String token;
 }

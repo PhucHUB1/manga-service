@@ -1,4 +1,4 @@
-package com.manganoob.identityservice.dto.request;
+package com.manganoob.identityservice.dto.request.manga_req;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,6 +8,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class IntrospectRequest {
-    String token;
+public class ThemeRequest {
+    String theme_name;
 }

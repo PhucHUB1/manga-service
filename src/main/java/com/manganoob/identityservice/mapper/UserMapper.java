@@ -4,9 +4,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-import com.manganoob.identityservice.dto.request.UserCreationRequest;
-import com.manganoob.identityservice.dto.request.UserUpdateRequest;
-import com.manganoob.identityservice.dto.response.UserResponse;
+import com.manganoob.identityservice.dto.request.user_req.UserCreationRequest;
+import com.manganoob.identityservice.dto.request.user_req.UserUpdateRequest;
+import com.manganoob.identityservice.dto.response.user_res.UserResponse;
 import com.manganoob.identityservice.entity.User;
 import org.mapstruct.Named;
 import org.springframework.web.multipart.MultipartFile;

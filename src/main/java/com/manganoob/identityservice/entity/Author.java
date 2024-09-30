@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -42,7 +44,6 @@ public class Author {
     @Column(name = "website")
     String website_link;
 
-    @ManyToOne
-    @JoinColumn(name = "manga_id")
-    Manga manga_author;
+    @OneToMany(mappedBy = "manga_author",cascade = CascadeType.ALL)
+    List<Manga> mangaList;
 }

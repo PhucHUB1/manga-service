@@ -12,9 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.manganoob.identityservice.constant.PredefinedRole;
-import com.manganoob.identityservice.dto.request.UserCreationRequest;
-import com.manganoob.identityservice.dto.request.UserUpdateRequest;
-import com.manganoob.identityservice.dto.response.UserResponse;
+import com.manganoob.identityservice.dto.request.user_req.UserCreationRequest;
+import com.manganoob.identityservice.dto.request.user_req.UserUpdateRequest;
+import com.manganoob.identityservice.dto.response.user_res.UserResponse;
 import com.manganoob.identityservice.entity.Role;
 import com.manganoob.identityservice.entity.User;
 import com.manganoob.identityservice.exception.AppException;

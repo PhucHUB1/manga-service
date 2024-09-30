@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -21,42 +22,60 @@ import java.util.Set;
 public class Manga {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+    UUID id;
 
     String title;
     String altTitle;
     String description;
     int year;
 
-    LocalDateTime createdAt = LocalDateTime.now();
+    LocalDateTime createdAt;
     LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "manga_chapter",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "manga_chapters", cascade = CascadeType.ALL)
     Set<Chapters> chapters = new HashSet<>();
 
-    @OneToMany(mappedBy = "manga_art",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "manga_art", cascade = CascadeType.ALL)
     Set<Art> artList;
 
-    @OneToMany(mappedBy = "manga_author",cascade = CascadeType.ALL)
-    List<Author> authorList;
+    @OneToMany(mappedBy = "manga_comment", cascade = CascadeType.ALL)
+    List<Comment> mangaCommentList;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    Author manga_author;
 
     @ManyToMany(mappedBy = "manga_genres")
-    Set<Genres>genresList;
+    Set<Genres> genresList;
 
     @ManyToMany(mappedBy = "manga_format")
-    Set<Format>formatList;
+    Set<Format> formatList;
 
     @ManyToMany(mappedBy = "manga_theme")
-    Set<Theme>themeList;
+    Set<Theme> themeList;
 
     @ManyToMany(mappedBy = "manga_content_warning")
-    Set<ContentWarning>contentWarningList;
+    Set<ContentWarning> contentWarningList;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-     Status status;
+    Status status;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     State state;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = this.createdAt;
+        this.year = LocalDateTime.now().getYear();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+        this.year = LocalDateTime.now().getYear();
+    }
 }
+
