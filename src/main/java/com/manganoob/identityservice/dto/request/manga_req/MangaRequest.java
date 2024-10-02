@@ -1,7 +1,5 @@
 package com.manganoob.identityservice.dto.request.manga_req;
 
-import com.manganoob.identityservice.Enum.State;
-import com.manganoob.identityservice.Enum.Status;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -37,10 +35,5 @@ public class MangaRequest {
     Set<String> themeIds;
     Set<String> contentWarningIds;
 
-    @NotNull(message = "Status is required")
-    Status status;
-
-    @NotNull(message = "State is required")
-    State state;
 }
 

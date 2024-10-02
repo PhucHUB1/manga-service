@@ -30,7 +30,7 @@ public class Chapters {
     @OneToMany(mappedBy = "chapter_images", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Images> chapterImages;
 
-    @OneToMany(mappedBy = "chapter_comment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Comment> chapterComments;
 
     @ManyToOne

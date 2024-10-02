@@ -22,12 +22,16 @@ import org.springframework.web.filter.CorsFilter;
 @EnableMethodSecurity
 public class SecurityConfig {
     private final String[] PUBLIC_ENDPOINTS_POST = {
-            "/users/create", "/auth/token", "/auth/introspect", "/auth/logout", "/auth/refresh"
+            "/users/create", "/auth/token", "/auth/introspect", "/auth/logout", "/auth/refresh","/comment/manga/create","/comment/chapter/create","/reply-comment/create"
     };
     private final String[] PUBLIC_ENDPOINTS_GET = {
-          "/users/{userId}/avatar"
+          "/users/{userId}/avatar","/tag/all-genres"
+    };
+    private final String[] PUBLIC_ENDPOINTS_PUT = {
+        "/comment/{commentId}/update","/reply-comment/{replyCommentId}/update"
     };
     private final String[] PUBLIC_ENDPOINTS_DELETE = {
+            "/comment/{commentId}/delete","/reply-comment/{replyCommentId}/delete"
     };
 
     @Autowired
@@ -38,6 +42,7 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests(request -> request
                 .requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS_POST).permitAll()
                 .requestMatchers(HttpMethod.GET,PUBLIC_ENDPOINTS_GET).permitAll()
+                .requestMatchers(HttpMethod.PUT,PUBLIC_ENDPOINTS_PUT).permitAll()
                 .requestMatchers(HttpMethod.DELETE,PUBLIC_ENDPOINTS_DELETE).permitAll()
                 .anyRequest()
                 .authenticated());

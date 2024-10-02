@@ -40,6 +40,9 @@ public class ReplyComment {
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
+        if (this.status == null) {
+            this.status = Status.APPROVED;
+        }
         this.updatedAt = this.createdAt;
     }
 
@@ -48,3 +51,4 @@ public class ReplyComment {
         this.updatedAt = LocalDateTime.now();
     }
 }
+

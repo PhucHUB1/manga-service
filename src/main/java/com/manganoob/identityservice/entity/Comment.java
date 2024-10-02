@@ -24,24 +24,24 @@ public class Comment {
 
     String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    User user_comment;
-
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    Status status;
+    Status status ;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chapter_id", nullable = false)
-     Chapters chapter_comment;
+    Chapters chapter;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "manga_id", nullable = true)
-    Manga manga_comment;
+    @JoinColumn(name = "manga_id", nullable = false)
+    Manga manga;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
 
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReplyComment> replyComments = new ArrayList<>();
@@ -49,6 +49,9 @@ public class Comment {
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
+        if (this.status == null) {
+            this.status = Status.APPROVED;
+        }
         this.updatedAt = this.createdAt;
     }
 

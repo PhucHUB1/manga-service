@@ -45,7 +45,7 @@ public class User {
     @ManyToMany
     Set<Role> roles;
 
-    @OneToMany(mappedBy = "user_comment",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     Set<Comment> comments;
 
     @OneToMany(mappedBy = "user_reply_comment",cascade = CascadeType.ALL)

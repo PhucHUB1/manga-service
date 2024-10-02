@@ -2,7 +2,8 @@ package com.manganoob.identityservice.dto.response.manga_res;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.web.multipart.MultipartFile;
+
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -10,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ArtResponse {
-    Long id;
+    UUID id;
     String imageArt;
     String description;
 }

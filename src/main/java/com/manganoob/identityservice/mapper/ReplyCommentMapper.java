@@ -1,10 +1,12 @@
 package com.manganoob.identityservice.mapper;
 
 import com.manganoob.identityservice.dto.request.manga_req.ReplyCommentRequest;
+import com.manganoob.identityservice.dto.request.manga_req.UpdateReplyCommentRequest;
 import com.manganoob.identityservice.dto.response.manga_res.ReplyCommentResponse;
 import com.manganoob.identityservice.entity.ReplyComment;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 
 @Mapper(componentModel = "spring")
@@ -20,5 +22,8 @@ public interface ReplyCommentMapper {
     @Mapping(source = "comment.id", target = "commentId")
     @Mapping(source = "comment.content", target = "commentContent")
     ReplyCommentResponse toReplyCommentResponse(ReplyComment replyComment);
+
+    @Mapping(target = "updatedAt", ignore = true)
+    void updateReplyComment(@MappingTarget ReplyComment replyComment, UpdateReplyCommentRequest request);
 
 }

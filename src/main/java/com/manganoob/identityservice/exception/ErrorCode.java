@@ -16,7 +16,10 @@ public enum ErrorCode {
     UNAUTHENTICATED(1006, "Unauthenticated", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(1007, "You do not have permission", HttpStatus.FORBIDDEN),
     INVALID_DOB(1008, "Your age must be at least {min}", HttpStatus.BAD_REQUEST),
-    AVATAR_UPLOAD_FAILED(1009, "Avatar upload failed", HttpStatus.BAD_REQUEST)
+    AVATAR_UPLOAD_FAILED(1009, "Avatar upload failed", HttpStatus.BAD_REQUEST),
+    MANGA_NOT_FOUND(2000, "Manga not found", HttpStatus.NOT_FOUND),
+    CHAPTER_NOT_FOUND(2001, "Chapter not found", HttpStatus.NOT_FOUND),
+    NOT_FOUND(2002, " Not found", HttpStatus.NOT_FOUND),
     ;
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {

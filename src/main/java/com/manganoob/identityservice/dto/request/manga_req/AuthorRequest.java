@@ -1,7 +1,5 @@
 package com.manganoob.identityservice.dto.request.manga_req;
 
-import jakarta.annotation.Nullable;
-import jakarta.validation.constraints.Null;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.multipart.MultipartFile;

@@ -20,14 +20,14 @@ public class Art {
 
     @Lob
     @Column(name = "imageArt")
-    byte[] imageArt;
+    byte[] Art;
 
     @Column(name = "imageArtname")
-    String imageArtName;
+    String artName;
 
     String description;
 
     @ManyToOne
     @JoinColumn(name = "manga_id")
-    Manga manga_art;
+    Manga manga;
 }

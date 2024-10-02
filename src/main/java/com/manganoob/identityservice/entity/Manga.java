@@ -35,10 +35,10 @@ public class Manga {
     @OneToMany(mappedBy = "manga_chapters", cascade = CascadeType.ALL)
     Set<Chapters> chapters = new HashSet<>();
 
-    @OneToMany(mappedBy = "manga_art", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "manga", cascade = CascadeType.ALL)
     Set<Art> artList;
 
-    @OneToMany(mappedBy = "manga_comment", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "manga", cascade = CascadeType.ALL)
     List<Comment> mangaCommentList;
 
     @ManyToOne
@@ -70,6 +70,10 @@ public class Manga {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = this.createdAt;
         this.year = LocalDateTime.now().getYear();
+        if (this.status == null && this.state == null) {
+            this.status = Status.WAITING;
+            this.state  = State.SUBMITTED;
+        }
     }
 
     @PreUpdate
