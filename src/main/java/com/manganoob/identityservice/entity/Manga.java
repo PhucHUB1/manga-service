@@ -46,16 +46,16 @@ public class Manga {
     Author manga_author;
 
     @ManyToMany(mappedBy = "manga_genres")
-    Set<Genres> genresList;
+    Set<Genres> manga_genres;
 
     @ManyToMany(mappedBy = "manga_format")
-    Set<Format> formatList;
+    Set<Format> manga_format;
 
     @ManyToMany(mappedBy = "manga_theme")
-    Set<Theme> themeList;
+    Set<Theme> manga_theme;
 
     @ManyToMany(mappedBy = "manga_content_warning")
-    Set<ContentWarning> contentWarningList;
+    Set<ContentWarning> manga_content_warning;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

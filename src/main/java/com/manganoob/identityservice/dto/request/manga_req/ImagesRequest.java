@@ -3,6 +3,7 @@ package com.manganoob.identityservice.dto.request.manga_req;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
@@ -12,12 +13,7 @@ import java.util.UUID;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ImagesRequest {
-
-    @NotNull(message = "Image data is required")
-    byte[] imageData;
-
-    @NotNull(message = "Image name is required")
-    String imageName;
+    MultipartFile imageData;
 
     @NotNull(message = "Chapter ID is required")
     UUID chapterId;

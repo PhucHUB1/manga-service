@@ -27,7 +27,7 @@ public class Chapters {
     LocalDate release_date;
     LocalDateTime createAt;
 
-    @OneToMany(mappedBy = "chapter_images", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Images> chapterImages;
 
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, orphanRemoval = true)

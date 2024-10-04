@@ -28,12 +28,14 @@ public class MangaRequest {
 
     Set<UUID> chapterIds;
     Set<UUID> artIds;
+
+    @NotNull(message = "Author is required")
     Long authorId;
 
-    Set<String> genreIds;
-    Set<String> formatIds;
-    Set<String> themeIds;
-    Set<String> contentWarningIds;
+    Set<String> genreName;
+    Set<String> formatName;
+    Set<String> themeName;
+    Set<String> contentWarningName;
 
 }
 

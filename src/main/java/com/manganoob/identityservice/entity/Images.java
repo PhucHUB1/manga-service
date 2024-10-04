@@ -20,13 +20,12 @@ public class Images {
     UUID id;
 
     @Lob
-    @Column(nullable = false)
+    @Column(name = "image")
      byte[] imageData;
 
      String imageName;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
+     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chapter_id", nullable = false)
-     Chapters chapter_images;
+     Chapters chapter;
 }
