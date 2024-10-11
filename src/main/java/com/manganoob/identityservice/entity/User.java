@@ -25,7 +25,6 @@ public class User {
 
     String password;
     String firstName;
-    LocalDate dob;
     String lastName;
     String email;
 

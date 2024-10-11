@@ -1,8 +1,6 @@
 package com.manganoob.identityservice.dto.request.user_req;
 
-import java.time.LocalDate;
 
-import com.manganoob.identityservice.validator.DobConstraint;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -32,6 +30,4 @@ public class UserCreationRequest {
 
     MultipartFile imageAvatar;
 
-    @DobConstraint(min = 5, message = "INVALID_DOB")
-    LocalDate dob;
 }

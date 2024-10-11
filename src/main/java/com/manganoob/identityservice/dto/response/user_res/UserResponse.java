@@ -1,6 +1,5 @@
 package com.manganoob.identityservice.dto.response.user_res;
 
-import java.time.LocalDate;
 import java.util.Set;
 
 import com.manganoob.identityservice.dto.response.RoleResponse;
@@ -18,7 +17,6 @@ public class UserResponse {
     String firstName;
     String lastName;
     String email;
-    LocalDate dob;
     String imageAvatar;
     Set<RoleResponse> roles;
 }

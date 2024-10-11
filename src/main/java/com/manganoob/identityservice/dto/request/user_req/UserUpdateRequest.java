@@ -1,9 +1,7 @@
 package com.manganoob.identityservice.dto.request.user_req;
 
-import java.time.LocalDate;
-import java.util.List;
 
-import com.manganoob.identityservice.validator.DobConstraint;
+import java.util.List;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -21,8 +19,7 @@ public class UserUpdateRequest {
     String firstName;
     String lastName;
 
-    @DobConstraint(min = 5, message = "INVALID_DOB")
-    LocalDate dob;
+
 
     @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     @NotEmpty(message = "Email cannot be empty")
