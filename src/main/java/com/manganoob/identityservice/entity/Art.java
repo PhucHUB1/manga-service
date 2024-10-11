@@ -25,9 +25,11 @@ public class Art {
     @Column(name = "imageArtname")
     String artName;
 
-    String description;
-
     @ManyToOne
     @JoinColumn(name = "manga_id")
     Manga manga;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
 }

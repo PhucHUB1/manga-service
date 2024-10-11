@@ -15,9 +15,13 @@ public interface ArtMapper {
 
     @Mapping(target = "Art", source = "imageArt", qualifiedByName = "multipartFileToByteArray")
     @Mapping(target = "artName", source = "imageArt", qualifiedByName = "multipartFileToFilename")
-    Art toEntity(ArtRequest request);
+    @Mapping(target = "manga.id",source = "request.mangaId")
+    @Mapping(target = "user.id",source = "request.userId")
+    Art toEntity(ArtRequest request, MultipartFile imageArt);
 
     @Mapping(target = "imageArt", source = "artName")
+    @Mapping(target = "mangaId", source = "manga.id")
+    @Mapping(target = "userId", source = "user.id")
     ArtResponse toResponse(Art art);
 
     @Named("multipartFileToByteArray")

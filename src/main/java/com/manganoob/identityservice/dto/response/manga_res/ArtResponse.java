@@ -13,5 +13,6 @@ import java.util.UUID;
 public class ArtResponse {
     UUID id;
     String imageArt;
-    String description;
+    UUID mangaId;
+    String userId;
 }

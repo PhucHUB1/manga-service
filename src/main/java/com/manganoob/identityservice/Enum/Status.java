@@ -14,5 +14,6 @@ public enum Status {
     AUTO_RESOLVED,
     BANNED,
     POSTED,
-    APPROVED
+    APPROVED,
+    ACTIVE
 }

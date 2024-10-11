@@ -4,10 +4,12 @@ import com.manganoob.identityservice.dto.request.ApiResponse;
 import com.manganoob.identityservice.dto.request.manga_req.ArtRequest;
 import com.manganoob.identityservice.dto.response.manga_res.ArtResponse;
 import com.manganoob.identityservice.service.ArtService;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,13 +23,16 @@ public class ArtController {
     ArtService artService;
 
 
-    @PostMapping("/create")
-    public ApiResponse<ArtResponse> create(@RequestBody ArtRequest request) throws IOException {
-        ArtResponse artResponse = artService.createArt(request);
-        return ApiResponse.<ArtResponse>builder()
+    @PostMapping("/post")
+    public ApiResponse<ArtResponse> postArt(
+            @RequestPart("art") @Valid ArtRequest request,
+            @RequestPart("imageArt") MultipartFile postArt) throws IOException {
+            ArtResponse artResponse = artService.postArt(request, postArt);
+            return ApiResponse.<ArtResponse>builder()
                 .result(artResponse)
                 .build();
     }
+
 
     @GetMapping("/{art_id}")
     public ApiResponse<ArtResponse> getArtById(@PathVariable UUID art_id) {

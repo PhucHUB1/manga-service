@@ -2,19 +2,21 @@ package com.manganoob.identityservice.service;
 
 import com.manganoob.identityservice.dto.request.manga_req.ImagesRequest;
 import com.manganoob.identityservice.dto.response.manga_res.ImagesResponse;
-import com.manganoob.identityservice.entity.Chapters;
 import com.manganoob.identityservice.entity.Images;
+import com.manganoob.identityservice.exception.AppException;
+import com.manganoob.identityservice.exception.ErrorCode;
 import com.manganoob.identityservice.mapper.ImagesMapper;
 import com.manganoob.identityservice.repository.ChaptersRepository;
 import com.manganoob.identityservice.repository.ImagesRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -26,23 +28,25 @@ public class ImageService {
     ChaptersRepository chaptersRepository;
     ImagesRepository imagesRepository;
 
-    public ImagesResponse postImage(ImagesRequest request) throws IOException {
-        Images image = imagesMapper.toImages(request);
-
-        Optional<Chapters> chapterOpt = chaptersRepository.findById(request.getChapterId());
-        if (chapterOpt.isEmpty()) {
-            throw new RuntimeException("Chapter not found with id: " + request.getChapterId());
-        }
-        image.setChapter(chapterOpt.get());
-
-        if (request.getImageData() != null && !request.getImageData().isEmpty()) {
-            image.setImageData(request.getImageData().getBytes());
-            image.setImageName(request.getImageData().getOriginalFilename());
+    public ImagesResponse postImage(ImagesRequest request, MultipartFile imageData) throws IOException {
+        Images images = imagesMapper.toImages(request,imageData);
+        if (imageData != null && !imageData.isEmpty()) {
+            try {
+                images.setImageData(imageData.getBytes());
+                images.setImageName(imageData.getOriginalFilename());
+            } catch (IOException e) {
+                throw new AppException(ErrorCode.AVATAR_UPLOAD_FAILED);
+            }
         }
 
-        Images savedImage = imagesRepository.save(image);
-        return imagesMapper.toImagesResponse(savedImage);
+        try {
+            images = imagesRepository.save(images);
+        } catch (DataIntegrityViolationException exception) {
+            throw new AppException(ErrorCode.EXISTED);
+        }
+        return imagesMapper.toImagesResponse(images);
     }
+
 
     public List<ImagesResponse> getAllByChapterId(UUID chapterId) {
         List<Images> imagesList = imagesRepository.findAllByChapterId(chapterId);

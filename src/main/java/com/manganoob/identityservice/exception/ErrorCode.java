@@ -20,6 +20,7 @@ public enum ErrorCode {
     MANGA_NOT_FOUND(2000, "Manga not found", HttpStatus.NOT_FOUND),
     CHAPTER_NOT_FOUND(2001, "Chapter not found", HttpStatus.NOT_FOUND),
     NOT_FOUND(2002, " Not found", HttpStatus.NOT_FOUND),
+    EXISTED(2003, " Existed", HttpStatus.BAD_REQUEST),
     ;
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {

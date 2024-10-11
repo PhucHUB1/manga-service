@@ -1,12 +1,12 @@
 package com.manganoob.identityservice.entity;
 
-import java.time.LocalDate;
-import java.util.Set;
-
+import com.manganoob.identityservice.Enum.Status;
 import jakarta.persistence.*;
-
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,7 +28,11 @@ public class User {
     LocalDate dob;
     String lastName;
     String email;
-    String status;
+
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    Status status ;
 
     @Column(name = "is_vip", nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
     boolean isVip = false;
@@ -50,4 +54,15 @@ public class User {
 
     @OneToMany(mappedBy = "user_reply_comment",cascade = CascadeType.ALL)
     Set<ReplyComment> replyComments;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    Set<Art> artList;
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.status == null) {
+            this.status = Status.ACTIVE;
+        }
+
+    }
 }

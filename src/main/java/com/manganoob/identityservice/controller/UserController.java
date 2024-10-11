@@ -70,11 +70,11 @@ public class UserController {
 
     @PutMapping("/update/{userId}")
     ApiResponse<UserResponse> updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
+        UserResponse updatedUserResponse = userService.updateUser(userId, request);
         return ApiResponse.<UserResponse>builder()
-                .result(userService.updateUser(userId, request))
+                .result(updatedUserResponse)
                 .build();
     }
-
     @GetMapping(value = "/{userId}/avatar", produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<byte[]> getUserAvatar(@PathVariable String userId) {
         byte[] imageAvatar = userService.getUserAvatar(userId);

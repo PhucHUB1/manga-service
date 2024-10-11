@@ -13,10 +13,10 @@ import java.io.IOException;
 @Mapper(componentModel = "spring")
 public interface ImagesMapper {
 
-    @Mapping(target = "chapter.id", source = "chapterId")
+    @Mapping(target = "chapter.id", source = "request.chapterId")
     @Mapping(target = "imageData", source = "imageData", qualifiedByName = "multipartFileToByteArray")
     @Mapping(target = "imageName", source = "imageData", qualifiedByName = "multipartFileToFilename")
-    Images toImages(ImagesRequest request);
+    Images toImages(ImagesRequest request, MultipartFile imageData);
 
     @Mapping(target = "chapterId", source = "chapter.id")
     @Mapping(target = "imageName", source = "imageName")
@@ -36,4 +36,5 @@ public interface ImagesMapper {
     default String multipartFileToFilename(MultipartFile file) {
         return (file != null && !file.isEmpty()) ? file.getOriginalFilename() : null;
     }
+
 }

@@ -82,17 +82,38 @@ public class UserService {
 
     @PostAuthorize("returnObject.username == authentication.name")
     public UserResponse updateUser(String userId, UserUpdateRequest request) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        // Fetch the existing user or throw an exception if not found
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
 
-        userMapper.updateUser(user, request);
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        // Update the password if provided in the request
+        if (request.getPassword() != null && !request.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
+        }
 
-        var roles = roleRepository.findAllById(request.getRoles());
-        user.setRoles(new HashSet<>(roles));
+        // Update the first name if provided
+        if (request.getFirstName() != null && !request.getFirstName().isEmpty()) {
+            user.setFirstName(request.getFirstName());
+        }
 
-        return userMapper.toUserResponse(userRepository.save(user));
+        // Update the date of birth if provided
+        if (request.getDob() != null) {
+            user.setDob(request.getDob());
+        }
+
+        // Update the last name if provided
+        if (request.getLastName() != null && !request.getLastName().isEmpty()) {
+            user.setLastName(request.getLastName());
+        }
+
+        // Update the email if provided
+        if (request.getEmail() != null && !request.getEmail().isEmpty()) {
+            user.setEmail(request.getEmail());
+        }
+
+        User updatedUser = userRepository.save(user);
+        return userMapper.toUserResponse(updatedUser);
     }
-
     @PreAuthorize("hasRole('ADMIN')")
     public void deleteUser(String userId) {
         userRepository.deleteById(userId);
