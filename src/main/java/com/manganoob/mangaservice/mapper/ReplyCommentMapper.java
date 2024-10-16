@@ -1,0 +1,29 @@
+package com.manganoob.mangaservice.mapper;
+
+import com.manganoob.mangaservice.dto.request.manga_req.ReplyCommentRequest;
+import com.manganoob.mangaservice.dto.request.manga_req.UpdateReplyCommentRequest;
+import com.manganoob.mangaservice.dto.response.manga_res.ReplyCommentResponse;
+import com.manganoob.mangaservice.entity.ReplyComment;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+
+
+@Mapper(componentModel = "spring")
+public interface ReplyCommentMapper {
+
+    @Mapping(source = "userId", target = "user_reply_comment.id")
+    @Mapping(source = "commentId", target = "comment.id")
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
+    ReplyComment toReplyComment(ReplyCommentRequest request);
+
+    @Mapping(source = "user_reply_comment.id", target = "userId")
+    @Mapping(source = "comment.id", target = "commentId")
+    @Mapping(source = "comment.content", target = "commentContent")
+    ReplyCommentResponse toReplyCommentResponse(ReplyComment replyComment);
+
+    @Mapping(target = "updatedAt", ignore = true)
+    void updateReplyComment(@MappingTarget ReplyComment replyComment, UpdateReplyCommentRequest request);
+
+}
