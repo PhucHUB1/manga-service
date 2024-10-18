@@ -10,8 +10,6 @@ import java.util.UUID;
 
 @Repository
 public interface RatingsRepository extends JpaRepository<Ratings, Long> {
-    @Query("SELECT AVG(r.score) FROM Ratings r WHERE r.manga.id = :mangaId")
-    Double findAverageScoreByMangaId(UUID mangaId);
 
     List<Ratings> findByMangaId(UUID mangaId);
 }

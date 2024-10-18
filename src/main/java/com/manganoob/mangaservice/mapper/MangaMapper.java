@@ -92,9 +92,8 @@ public interface MangaMapper {
     }
     @Named("mapAuthorById")
     default Author mapAuthorById(Long authorId) {
-        // You can use a service to fetch the Author by id here if needed
         Author author = new Author();
-        author.setId(authorId);  // Assuming you have a setter for ID
+        author.setId(authorId);
         return author;
     }
 

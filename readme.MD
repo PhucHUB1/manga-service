@@ -1,4 +1,4 @@
-# Identity service
+# Manga service
 
 ## Tech stack
 * Build tool: maven >= 3.9.5

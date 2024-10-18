@@ -50,11 +50,11 @@ public class RatingsController {
         return ApiResponse.<Void>builder().build(); // No result is needed for deletion
     }
 
-    // 7. Get the average rating for a specific manga
-    @GetMapping("/manga/{mangaId}/average")
-    public ApiResponse<AverageRatingResponse> getAverageRating(@PathVariable UUID mangaId) {
-        return ApiResponse.<AverageRatingResponse>builder()
-                .result(ratingService.getAverageRatingByManga(mangaId))
-                .build();
-    }
+  // 7. Get the average rating for a specific manga
+  @GetMapping("/manga/{mangaId}/average")
+   public ApiResponse<AverageRatingResponse> getAverageRating(@PathVariable UUID mangaId) {
+       return ApiResponse.<AverageRatingResponse>builder()
+           .result(ratingService.getAverageRatingByManga(mangaId))
+               .build();
+   }
 }
